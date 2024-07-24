@@ -4,8 +4,7 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-        int[] results = new int[10];    // 연산 후의 결과를 담을 배열 선언(크기 10)
-        int count = 0;                  // 배열의 마지막 index를 저장할 변수 선언
+        List<Integer> results = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
 
@@ -62,18 +61,17 @@ public class App {
             // 오류가 없는 경우 배열에 결과를 저장 및 count 증가
             if (!error) {
                 System.out.println("결과 : " + result);
-
-                if (count >= results.length) {
-                    for (int i = 0; i < results.length - 1; i++) {
-                        results[i] = results[i + 1];
-                    }
-                    results[results.length - 1] = result;
-                } else {
-                    results[count] = result;
-                    count++;
-                }
+                results.add(result);
             } else {
-                System.out.println(errorMessage);
+                System.out.println("오류 : " + errorMessage);
+            }
+
+            // 가장 먼저 저장된 결과 삭제 여부 확인
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            String questionRemove = sc.next();
+            if (questionRemove.equals("remove")) {
+                int removeResult = results.remove(0);
+                System.out.println("삭제된 값 : " + removeResult );
             }
 
             // 추가 계산 여부 확인
@@ -83,10 +81,8 @@ public class App {
                 System.out.println("프로그램을 종료하겠습니다.");
                 break;
             }
-
-
         }
-        sc.close();
 
+        sc.close();
     }
 }
