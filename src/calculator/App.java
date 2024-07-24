@@ -4,12 +4,10 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-
         int[] results = new int[10];    // 연산 후의 결과를 담을 배열 선언(크기 10)
         int count = 0;                  // 배열의 마지막 index를 저장할 변수 선언
 
+        Scanner sc = new Scanner(System.in);
 
         while (true) {
 
@@ -64,8 +62,16 @@ public class App {
             // 오류가 없는 경우 배열에 결과를 저장 및 count 증가
             if (!error) {
                 System.out.println("결과 : " + result);
-                results[count] = result;
-                count++;
+
+                if (count >= results.length) {
+                    for (int i = 0; i < results.length - 1; i++) {
+                        results[i] = results[i + 1];
+                    }
+                    results[results.length - 1] = result;
+                } else {
+                    results[count] = result;
+                    count++;
+                }
             } else {
                 System.out.println(errorMessage);
             }
