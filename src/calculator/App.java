@@ -7,6 +7,10 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
+        int[] results = new int[10];    // 연산 후의 결과를 담을 배열 선언(크기 10)
+        int count = 0;                  // 배열의 마지막 index를 저장할 변수 선언
+
+
         while (true) {
 
             // Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다.
@@ -56,10 +60,12 @@ public class App {
                     errorMessage = "사칙연산 기호가 잘못 입력되었습니다.";
                     break;
             }
-            
-            // 오류가 없는 경우 출력
+
+            // 오류가 없는 경우 배열에 결과를 저장 및 count 증가
             if (!error) {
                 System.out.println("결과 : " + result);
+                results[count] = result;
+                count++;
             } else {
                 System.out.println(errorMessage);
             }
@@ -71,6 +77,7 @@ public class App {
                 System.out.println("프로그램을 종료하겠습니다.");
                 break;
             }
+
 
         }
         sc.close();
