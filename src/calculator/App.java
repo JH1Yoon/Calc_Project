@@ -74,6 +74,17 @@ public class App {
                 System.out.println("삭제된 값 : " + removeResult );
             }
 
+            // 연산 결과 전부 조회 여부 확인
+            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            String questionInquiry = sc.next();
+            if (questionInquiry.equals("inquiry")) {
+                System.out.print("저장된 연산 결과 : ");
+                for (int value : results) {
+                    System.out.print(value + " ");
+                }
+                System.out.println();
+            }
+
             // 추가 계산 여부 확인
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String answer = sc.next();
