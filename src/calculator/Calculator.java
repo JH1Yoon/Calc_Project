@@ -40,4 +40,9 @@ public class Calculator {
     public void setResults(double result) {
         this.results.add(result);
     }
+
+    // 가장 먼저 저장된 데이터를 삭제하는 메서드
+    public void removeResult() {
+        results.remove(0);
+    }
 }
