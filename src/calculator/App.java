@@ -4,8 +4,8 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        List<Integer> results = new ArrayList<>();
-        Calculator calulator = new Calculator();   /* Calculator 인스턴스 생성 */
+        /* Calculator 인스턴스 생성 */
+        Calculator calculator = new Calculator();
 
         Scanner sc = new Scanner(System.in);
 
@@ -28,24 +28,26 @@ public class App {
             char op = sc.next().charAt(0);   // charAt(idx) : charAt 메서드는 매개변수로 char 타입으로 반환하고자 하는 문자열의 위치(idx)를 받는다.
 
             // 입력받은 양의 정수 2개와 사칙연산 기호를 사용하여 연산을 진행한 후 결과값을 출력
-            double result = calulator.calculate(num1, num2, op);
+            double result = calculator.calculate(num1, num2, op);
+            calculator.setResults(result);
             System.out.println("결과 : " + result);
 
 
             // 가장 먼저 저장된 결과 삭제 여부 확인
-            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-            String questionRemove = sc.next();
-            if (questionRemove.equals("remove")) {
-                int removeResult = results.remove(0);
-                System.out.println("삭제된 값 : " + removeResult );
-            }
+//            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+//            String inputnRemove = sc.next();
+//            if (inputnRemove.equals("remove")) {
+//                int removeResult = results.remove(0);
+//                System.out.println("삭제된 값 : " + removeResult );
+//            }
 
             // 연산 결과 전부 조회 여부 확인
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
-            String questionInquiry = sc.next();
-            if (questionInquiry.equals("inquiry")) {
+            String inputInquiry = sc.next();
+            if (inputInquiry.equals("inquiry")) {
                 System.out.print("저장된 연산 결과 : ");
-                for (int value : results) {
+                List<Double> results = calculator.getResults();
+                for (double value : results) {
                     System.out.print(value + " ");
                 }
                 System.out.println();
