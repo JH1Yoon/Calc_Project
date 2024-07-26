@@ -43,6 +43,17 @@ public class Calculator {
 
     // 가장 먼저 저장된 데이터를 삭제하는 메서드
     public void removeResult() {
+        double removeResult = results.get(0);
         results.remove(0);
+        System.out.println("삭제된 값 : " + removeResult);
+    }
+
+    // 저장된 연산결과를 조회하는 메서드
+    public void inquiryResults() {
+        System.out.print("저장된 연산 결과 : ");
+        for (double value : results) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
     }
 }

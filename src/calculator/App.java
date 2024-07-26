@@ -37,21 +37,14 @@ public class App {
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             String inputnRemove = sc.next();
             if (inputnRemove.equals("remove")) {
-                double removeResult = calculator.getResults().get(0);
                 calculator.removeResult();
-                System.out.println("삭제된 값 : " + removeResult);
             }
 
             // 연산 결과 전부 조회 여부 확인
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             String inputInquiry = sc.next();
             if (inputInquiry.equals("inquiry")) {
-                System.out.print("저장된 연산 결과 : ");
-                List<Double> results = calculator.getResults();
-                for (double value : results) {
-                    System.out.print(value + " ");
-                }
-                System.out.println();
+                calculator.inquiryResults();
             }
 
             // 추가 계산 여부 확인
