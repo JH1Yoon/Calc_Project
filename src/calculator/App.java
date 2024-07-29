@@ -5,11 +5,13 @@ import java.util.*;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-        Calculator calculator = new Calculator();   // Calculator 인스턴스 생성
+
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        CircleCalculator circleCalculator = new CircleCalculator();
 
         while (true) {
             // 계산 선택(getValidSelection를 메서드를 이용하여 사칙연산할지, 원의넓이를 계산할지 선택)
-            int selection = getValidSelection(sc, "사칙연산[1], 원의 넓이[2] : ");
+            int selection = getValidSelection(sc);
             if (selection == 1) {
                 // 사칙연산 계산
                 // Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다.
@@ -29,9 +31,9 @@ public class App {
                 System.out.print("사칙연산 기호를 입력하세요: ");   // +, -, *, /, %
                 char op = sc.next().charAt(0);   // charAt(idx) : charAt 메서드는 매개변수로 char 타입으로 반환하고자 하는 문자열의 위치(idx)를 받는다.
                 // 입력받은 양의 정수 2개와 사칙연산 기호를 사용하여 연산을 진행한 후 결과값을 출력
-                calculator.setArithmetic(num1, num2, op);
-                double result = calculator.arithmeticCalculate();
-                calculator.arithmeticAddResult(result);
+                arithmeticCalculator.setArithmetic(num1, num2, op);
+                double result = arithmeticCalculator.calculate();
+                arithmeticCalculator.addResult(result);
                 System.out.println("결과 : " + result);
 
 
@@ -39,14 +41,14 @@ public class App {
                 System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
                 String inputnRemove = sc.next();
                 if (inputnRemove.equals("remove")) {
-                    calculator.arithmeticRemoveResult();
+                    arithmeticCalculator.removeResult();
                 }
 
                 // 연산 결과 전부 조회 여부 확인
                 System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                 String inputInquiry = sc.next();
                 if (inputInquiry.equals("inquiry")) {
-                    calculator.arithmeticInquiryResult();
+                    arithmeticCalculator.inquiryResult();
                 }
 
                 // 추가 계산 여부 확인
@@ -58,28 +60,28 @@ public class App {
                 }
             } else {
                 // 원의 넓이 계산
-                double circleRadius = getRadiusSelection(sc, "반지름을 입력하세요(cm) : ");
+                double circleRadius = getRadiusSelection(sc);
 
                 // setCircle로 값 지정
-                calculator.setCircle(circleRadius);
+                circleCalculator.setCircle(circleRadius);
 
                 // 원의 넓이 계산 수행 및 결과 출력
-                double result = calculator.circleCalculate(circleRadius);
-                calculator.circleAddResult(result);
+                double result = circleCalculator.calculate();
+                circleCalculator.addResult(result);
                 System.out.println("결과 : " + result);
 
                 // 원의 넓이가 저장된 리스트에서 가장 먼저 저장된 결과 삭제 여부 확인
                 System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
                 String inputnRemove = sc.next();
                 if (inputnRemove.equals("remove")) {
-                    calculator.circleRemoveResult();
+                    circleCalculator.removeResult();
                 }
 
                 // 원의 넓이 결과 전부 조회 여부 확인
                 System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                 String inputInquiry = sc.next();
                 if (inputInquiry.equals("inquiry")) {
-                    calculator.circleInquiryResult();
+                    circleCalculator.inquiryResult();
                 }
 
                 // 원의 넓이의 추가 계산 여부 확인
@@ -95,10 +97,10 @@ public class App {
         sc.close();
     }
 
-    private static int getValidSelection(Scanner sc, String str) {
+    private static int getValidSelection(Scanner sc) {
         int selection;
         while (true) {
-            System.out.println(str);
+            System.out.println("사칙연산[1], 원의 넓이[2] : ");
             if (sc.hasNextInt()) {
                 selection = sc.nextInt();
                 sc.nextLine();
@@ -114,10 +116,10 @@ public class App {
         }
     }
 
-    private static double getRadiusSelection(Scanner sc, String str) {
+    private static double getRadiusSelection(Scanner sc) {
         double selection;
         while (true) {
-            System.out.println(str);
+            System.out.println("반지름을 입력하세요(cm) : ");
             if (sc.hasNextDouble()) {
                 selection = sc.nextDouble();
                 sc.nextLine();
