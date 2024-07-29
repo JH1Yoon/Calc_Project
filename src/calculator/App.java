@@ -27,8 +27,10 @@ public class App {
             System.out.print("사칙연산 기호를 입력하세요: ");   // +, -, *, /, %
             char op = sc.next().charAt(0);   // charAt(idx) : charAt 메서드는 매개변수로 char 타입으로 반환하고자 하는 문자열의 위치(idx)를 받는다.
 
+
             // 입력받은 양의 정수 2개와 사칙연산 기호를 사용하여 연산을 진행한 후 결과값을 출력
-            double result = calculator.calculate(num1, num2, op);
+            calculator = new Calculator(num1, num2, op);
+            double result = calculator.calculate();
             calculator.setResults(result);
             System.out.println("결과 : " + result);
 
