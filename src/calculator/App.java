@@ -12,6 +12,8 @@ public class App {
         while (true) {
             // 계산 선택(getValidSelection를 메서드를 이용하여 사칙연산할지, 원의넓이를 계산할지 선택)
             int selection = getValidSelection(sc);
+
+
             if (selection == 1) {
                 // 사칙연산 계산
                 // Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다.

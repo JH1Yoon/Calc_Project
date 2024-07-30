@@ -10,6 +10,11 @@ public class ArithmeticCalculator extends Calculator {
     private int num2;           // 두 번째 정수
     private char operator;      // 연산자
 
+    private final AddOperator add = new AddOperator();
+    private final SubtractOperator sub = new SubtractOperator();
+    private final MultiplyOperator multi = new MultiplyOperator();
+    private final DivideOperator div = new DivideOperator();
+
     // 생성자
     public ArithmeticCalculator() {
         this.arithmeticList = new ArrayList<>();
@@ -28,20 +33,16 @@ public class ArithmeticCalculator extends Calculator {
         double result = 0;
         switch (this.operator) {
             case '+':
-                result = this.num1 + this.num2;
+                result = add.operate(num1, num2);
                 break;
             case '-':
-                result = this.num1 - this.num2;
+                result = sub.operate(num1, num2);
                 break;
             case '*':
-                result = this.num1 * this.num2;
+                result = multi.operate(num1, num2);
                 break;
             case '/':
-                if (this.num2 == 0) {
-                    throw new BadException("분모가 0이 아닌 양의 정수");
-                } else {
-                    result = this.num1 / this.num2;
-                }
+                result = div.operate(num1, num2);
                 break;
             default:
                 throw new BadException("사칙연산자[+, -, *, /]");
