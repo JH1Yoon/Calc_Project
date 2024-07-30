@@ -10,11 +10,6 @@ public class ArithmeticCalculator extends Calculator {
     private int num2;           // 두 번째 정수
     private char operator;      // 연산자
 
-    private final AddOperator add = new AddOperator();
-    private final SubtractOperator sub = new SubtractOperator();
-    private final MultiplyOperator multi = new MultiplyOperator();
-    private final DivideOperator div = new DivideOperator();
-
     // 생성자
     public ArithmeticCalculator() {
         this.arithmeticList = new ArrayList<>();
@@ -30,19 +25,22 @@ public class ArithmeticCalculator extends Calculator {
     // 사칙연산 메서드
     @Override
     public double calculate() throws BadException {
-        double result = 0;
+        int result = 0;
         switch (this.operator) {
             case '+':
-                result = add.operate(num1, num2);
+                result = add(num1, num2);
                 break;
             case '-':
-                result = sub.operate(num1, num2);
+                result = sub(num1, num2);
                 break;
             case '*':
-                result = multi.operate(num1, num2);
+                result = multi(num1, num2);
                 break;
             case '/':
-                result = div.operate(num1, num2);
+                result = div(num1, num2);
+                break;
+            case '%':
+                result = mod(num1, num2);
                 break;
             default:
                 throw new BadException("사칙연산자[+, -, *, /]");
